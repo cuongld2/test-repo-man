@@ -1,0 +1,23 @@
+version: "3.4"
+services:
+  jaeger:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:latest
+    ports:
+    - 16686:16686
+    - 14269:14269
+    - 4317:4317
+    - 4318:4318
+    - 14268:14268
+
+  mongodb:
+    image: mongo
+    ports:
+    - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: tracing
+    volumes:
+    - db:/data/db
+
+volumes:
+  db:
